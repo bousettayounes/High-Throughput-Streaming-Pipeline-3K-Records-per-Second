@@ -1,0 +1,79 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="Xt6aFsv24H1QuKFPjgN6">
+    <mxGraphModel dx="1752" dy="1035" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-1" target="gSWm9ycJ9KPdhaYR0MnF-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-1" target="gSWm9ycJ9KPdhaYR0MnF-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-1" target="gSWm9ycJ9KPdhaYR0MnF-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-1" target="gSWm9ycJ9KPdhaYR0MnF-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Kafka&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="376.6197183098592" width="140" height="98.59154929577466" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Zookeeper&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="554.0845070422536" width="120" height="59.15492957746479" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-3" target="gSWm9ycJ9KPdhaYR0MnF-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-3" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Spark cluster&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="327.32394366197184" width="220" height="197.1830985915493" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Schema registry&amp;nbsp;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="179.43661971830986" width="120" height="59.15492957746479" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-5" target="gSWm9ycJ9KPdhaYR0MnF-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-5" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Data Producer&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="396.3380281690141" width="120" height="59.15492957746479" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-9" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Load balancer&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="268.1673239436619" width="120" height="59.15492957746479" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.558;entryY=0.983;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="gSWm9ycJ9KPdhaYR0MnF-5" target="gSWm9ycJ9KPdhaYR0MnF-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-14" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;UI interface (confluent)&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="554.0845070422536" width="120" height="59.15492957746479" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-16" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Output (BI tool)&amp;nbsp;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="376.6197183098592" width="140" height="98.59154929577466" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-20" value="STREAMING" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="750" y="391.4084507042254" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-21" value="Produce data&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="450" y="391.4084507042254" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-22" value="OUtput Data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="396.3380281690141" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-23" value="Schema Consistancy&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="590" y="140" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-24" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Monitoring Tool (&lt;/font&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 21px;&quot;&gt;&lt;b&gt;prometheus)&lt;/b&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="642.8199999999999" width="1200" height="57.18" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-26" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;Storage System&amp;nbsp; (RDBMS) or HDFS or S3 or DataLake&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="710" width="1210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-27" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="860" width="330" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gSWm9ycJ9KPdhaYR0MnF-28" value="&lt;b&gt;&lt;i&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Calculation of storage&lt;/font&gt;&lt;/i&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="185" y="880" width="170" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
