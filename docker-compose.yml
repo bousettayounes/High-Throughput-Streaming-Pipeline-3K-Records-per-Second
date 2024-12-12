@@ -146,7 +146,7 @@ services:
       - "18081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-broker-1:19092,kafka-controller-2:19092,kafka-broker-3:19092
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka-broker-1:19092,kafka-broker-2:19092,kafka-broker-3:19092"
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:18081
     volumes:
@@ -186,7 +186,8 @@ services:
           clusters:
             - name: local-connect-cluster
               url: http://connect:8083
-
+    networks:
+        - yns_network
 networks:
   yns_network:
     driver: bridge
