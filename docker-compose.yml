@@ -1,5 +1,12 @@
 version: '3.8'
-
+x-spark-common: &spark-common
+  build:
+    context : .
+    dockerfile: DockerFile2
+  volumes:
+    - ./jobs:/opt/bitnami/spark/jobs
+  networks:
+    - yns_network
 services:
 
   kafka-controller-1:
@@ -188,6 +195,36 @@ services:
               url: http://connect:8083
     networks:
         - yns_network
+
+  spark-master:
+    <<: *spark-common
+    command: bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "9090:8080"
+      - "7077:7077"  
+
+  spark-worker:
+    <<: *spark-common
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+
+  spark-worker-2:
+    <<: *spark-common
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+
 networks:
   yns_network:
     driver: bridge
