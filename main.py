@@ -1,6 +1,7 @@
 from confluent_kafka import Producer
 from confluent_kafka.admin import AdminClient, NewTopic
-import logging, uuid, random, time, json
+import logging, uuid, random, time, json, threading
+
 
 KAFKA_BROKERS = "localhost:29093,localhost:39093,localhost:49093"
 NUM_PARTITIONS = 5
@@ -62,10 +63,7 @@ def delivery_report(err, message):
     else:
         logging.info(f"RECORD {message.key()} SUCCESSFULLY PRODUCED")
 
-if __name__ == "__main__":
-    create_topic(TOPIC_NAME)
-    producer = Producer(producer_conf)
-
+def produce_transactions(thread_id, producer):
     while True:
         transaction = generate_transaction()
         try:
@@ -75,7 +73,26 @@ if __name__ == "__main__":
                 value=json.dumps(transaction).encode("utf-8"),
                 on_delivery=delivery_report
             )
-            print(f"PRODUCED TRANSACTION: {transaction}")
+            print(f" THREAD {thread_id} - PRODUCED TRANSACTION: {transaction}")
             producer.flush()
         except Exception as e:
             print(f"ERROR SENDING TRANSACTION: {e}")
+
+def producer_data_in_para(num_threads):
+    threads = []
+    producer = Producer(producer_conf)  # Instantiate the producer here
+    try:
+        for i in range(num_threads):
+            thread = threading.Thread(target=produce_transactions, args=(i, producer))  # Pass the producer
+            thread.daemon = True
+            thread.start()
+            threads.append(thread)
+        for thread in threads:
+            thread.join()
+    except Exception as e:
+        print(f"Error: {e}")  # Added proper error logging
+
+
+if __name__ == "__main__":
+    create_topic(TOPIC_NAME)
+    producer_data_in_para(3)
