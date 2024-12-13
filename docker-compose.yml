@@ -5,6 +5,8 @@ x-spark-common: &spark-common
     dockerfile: DockerFile2
   volumes:
     - ./jobs:/opt/bitnami/spark/jobs
+    - ./checkpoint:/opt/bitnami/spark/checkpoint
+    - ./state:/opt/bitnami/spark/state
   networks:
     - yns_network
 services:
