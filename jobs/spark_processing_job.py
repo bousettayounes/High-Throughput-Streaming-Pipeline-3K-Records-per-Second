@@ -2,15 +2,14 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
 
-KAFKA_BROKERS = "localhost:29093,localhost:39093,localhost:49093"
+KAFKA_BROKERS = "kafka-broker-1:19091,kafka-broker-2:19092,kafka-broker-3:19093"
 TOPIC_NAME = "Financial_TRANSACTIONS"
 AGGREGATES_TOPIC = "AGG_TOPIC"
 ANNOMALIES_TOPIC = "ANN_TOPIC"
-CHECKPOINT_LOCATION = r'D:\Personal_Projects\Big Data processing\checkpoint'
-STATE_LOCATION = r'D:\Personal_Projects\Big Data processing\state'
+CHECKPOINT_LOCATION = "/opt/bitnami/spark/checkpoint"
+STATE_LOCATION = "/opt/bitnami/spark/state"
 spark = (SparkSession.builder
          .appName("FinancialTransactionsProcessing")
-         .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.1')
          .config('spark.sql.streaming.checkpointLocation', CHECKPOINT_LOCATION)
          .config('spark.sql.streaming.stateStoreDir', STATE_LOCATION)
          .config('spark.sql.shuffle.partitions', 20)
@@ -29,7 +28,6 @@ transaction_schema = StructType([
     StructField('isInternational', StringType(), nullable=True),
     StructField('currency', StringType(), nullable=True),
 ])
-
 
 kafka_stream = (spark.readStream
                 .format('kafka')
@@ -58,7 +56,7 @@ aggregated_df = transactions_dataframe.groupby("merchantId") \
         count("*").alias("transactionCount")
     )
 
-aggregation_query = aggregated_df.withColumn("key", col("merchantId").cast("string")) \
+aggregated_df.withColumn("key", col("merchantId").cast("string")) \
     .withColumn("value", to_json(struct(
         col("merchantId"),
         col("totalAmount"),
