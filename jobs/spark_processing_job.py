@@ -4,10 +4,13 @@ from pyspark.sql.functions import *
 
 KAFKA_BROKERS = "kafka-broker-1:19091,kafka-broker-2:19092,kafka-broker-3:19093"
 TOPIC_NAME = "Financial_TRANSACTIONS"
-AGGREGATES_TOPIC = "AGG_TOPIC"
-ANNOMALIES_TOPIC = "ANN_TOPIC"
+AGGREGATES_TOPIC = "AGGREGATED_TOPIC"
+ANNOMALIES_TOPIC = "ANNOMALIES_TOPIC"
 CHECKPOINT_LOCATION = "/opt/bitnami/spark/checkpoint"
 STATE_LOCATION = "/opt/bitnami/spark/state"
+
+
+
 spark = (SparkSession.builder
          .appName("FinancialTransactionsProcessing")
          .config('spark.sql.streaming.checkpointLocation', CHECKPOINT_LOCATION)
@@ -16,6 +19,8 @@ spark = (SparkSession.builder
          .getOrCreate())
 
 spark.sparkContext.setLogLevel("WARN")
+
+
 transaction_schema = StructType([
     StructField('transactionId', StringType(), nullable=True),
     StructField('userId', StringType(), nullable=True),
@@ -69,4 +74,3 @@ aggregated_df.withColumn("key", col("merchantId").cast("string")) \
     .option("topic", AGGREGATES_TOPIC) \
     .option("checkpointLocation", f"{CHECKPOINT_LOCATION}/aggregates") \
     .start().awaitTermination()
-

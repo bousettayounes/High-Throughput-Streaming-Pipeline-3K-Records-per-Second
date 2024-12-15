@@ -8,7 +8,9 @@ NUM_PARTITIONS = 5
 REPLICATION_FACTOR = 3
 TOPIC_NAME = "Financial_TRANSACTIONS"
 
+
 logging.basicConfig(level=logging.INFO)
+
 
 def generate_transaction():
     return dict(
@@ -51,9 +53,12 @@ def create_topic(topic_name):
                     future.result()
                     logging.info(f"TOPIC '{topic_name}' CREATED SUCCESSFULLY!")
                 except Exception as e:
+                    
                     logging.error(f"FAILED TO CREATE TOPIC '{topic_name}': {e}")
         else:
+
             print(f"TOPIC '{topic_name}' ALREADY EXISTS")
+
     except Exception as e:
         logging.error(f"ERROR CREATING TOPIC: {e}")
 
@@ -90,7 +95,7 @@ def producer_data_in_para(num_threads):
         for thread in threads:
             thread.join()
     except Exception as e:
-        print(f"Error: {e}")  # Added proper error logging
+        print(f"Error is : {e}")  # Added proper error logging
 
 
 if __name__ == "__main__":
