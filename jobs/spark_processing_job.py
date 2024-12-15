@@ -2,14 +2,17 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
 from confluent_kafka.schema_registry import SchemaRegistryClient
-import json
+from datetime import datetime
+import json,time
 
+
+CURRENT_TIME = datetime.now().strftime("%Y%m%d_%H%M%S")
 KAFKA_BROKERS = "kafka-broker-1:19091,kafka-broker-2:19092,kafka-broker-3:19093"
 SCHEMA_REGISTRY_URL = "http://schema-registry:8081"
 TOPIC_NAME = "Financial_TRANSACTIONS"
 AGGREGATES_TOPIC = "AGGREGATED_TOPIC"
 ANNOMALIES_TOPIC = "ANNOMALIES_TOPIC"
-CHECKPOINT_LOCATION = "/opt/bitnami/spark/checkpoint"
+CHECKPOINT_LOCATION = f"/opt/bitnami/spark/checkpoint/{CURRENT_TIME}"
 STATE_LOCATION = "/opt/bitnami/spark/state"
 SUBJECT_NAME = "Financial_TRANSACTIONS_schema"
 
@@ -25,7 +28,7 @@ def get_schema_from_registry():
         return parse_avro_schema_to_spark_schema(json.loads(schema_str))
     
     except Exception as e:
-        print(f"Error retrieving schema: {e}")
+        print(f"ERROR RETRIEVING SCHEMA : {e}")
         raise
 
 def parse_avro_schema_to_spark_schema(avro_schema):
@@ -95,5 +98,6 @@ aggregated_df.withColumn("key", col("merchantId").cast("string")) \
     .outputMode("update") \
     .option("kafka.bootstrap.servers", KAFKA_BROKERS) \
     .option("topic", AGGREGATES_TOPIC) \
+    .option("partitionBy","key")\
     .option("checkpointLocation", f"{CHECKPOINT_LOCATION}/aggregates") \
     .start().awaitTermination()
