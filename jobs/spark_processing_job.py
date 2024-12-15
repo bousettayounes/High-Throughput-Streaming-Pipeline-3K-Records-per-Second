@@ -1,15 +1,56 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
+from confluent_kafka.schema_registry import SchemaRegistryClient
+import json
 
 KAFKA_BROKERS = "kafka-broker-1:19091,kafka-broker-2:19092,kafka-broker-3:19093"
+SCHEMA_REGISTRY_URL = "http://schema-registry:8081"
 TOPIC_NAME = "Financial_TRANSACTIONS"
 AGGREGATES_TOPIC = "AGGREGATED_TOPIC"
 ANNOMALIES_TOPIC = "ANNOMALIES_TOPIC"
 CHECKPOINT_LOCATION = "/opt/bitnami/spark/checkpoint"
 STATE_LOCATION = "/opt/bitnami/spark/state"
+SUBJECT_NAME = "Financial_TRANSACTIONS_schema"
 
+def get_schema_from_registry():
 
+    try:
+        schema_registry_client = SchemaRegistryClient({'url': SCHEMA_REGISTRY_URL})
+        
+        latest_schema = schema_registry_client.get_latest_version(SUBJECT_NAME)
+        
+        schema_str = latest_schema.schema.schema_str
+        
+        return parse_avro_schema_to_spark_schema(json.loads(schema_str))
+    
+    except Exception as e:
+        print(f"Error retrieving schema: {e}")
+        raise
+
+def parse_avro_schema_to_spark_schema(avro_schema):
+
+    fields = []
+    for field in avro_schema['fields']:
+        field_name = field['name']
+        field_type = field['type']
+        
+        if isinstance(field_type, list):
+            actual_type = field_type[0] if field_type[0] != 'null' else field_type[1]
+        else:
+            actual_type = field_type
+        
+        spark_type = {
+            'string': StringType(),
+            'long': LongType(),
+            'double': DoubleType(),
+            'int': IntegerType(),
+            'boolean': BooleanType()
+        }.get(actual_type, StringType())
+        
+        fields.append(StructField(field_name, spark_type, nullable=True))
+    
+    return StructType(fields)
 
 spark = (SparkSession.builder
          .appName("FinancialTransactionsProcessing")
@@ -20,19 +61,7 @@ spark = (SparkSession.builder
 
 spark.sparkContext.setLogLevel("WARN")
 
-
-transaction_schema = StructType([
-    StructField('transactionId', StringType(), nullable=True),
-    StructField('userId', StringType(), nullable=True),
-    StructField('merchantId', StringType(), nullable=True),
-    StructField('amount', DoubleType(), nullable=True),
-    StructField('transactionTime', LongType(), nullable=True),
-    StructField('transactionType', StringType(), nullable=True),
-    StructField('location', StringType(), nullable=True),
-    StructField('paymentMethod', StringType(), nullable=True),
-    StructField('isInternational', StringType(), nullable=True),
-    StructField('currency', StringType(), nullable=True),
-])
+transaction_schema = get_schema_from_registry()
 
 kafka_stream = (spark.readStream
                 .format('kafka')
@@ -50,12 +79,6 @@ transactions_dataframe = transactions_dataframe.withColumn(
     'transactionTimestamp', (col('transactionTime') / 1000).cast('timestamp'))
 
 aggregated_df = transactions_dataframe.groupBy("merchantId") \
-    .agg(
-        sum("amount").alias("totalAmount"),
-        count("*").alias("transactionCount")
-    )
-
-aggregated_df = transactions_dataframe.groupby("merchantId") \
     .agg(
         sum("amount").alias("totalAmount"),
         count("*").alias("transactionCount")
