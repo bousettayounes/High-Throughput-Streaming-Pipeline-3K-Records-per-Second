@@ -10,6 +10,20 @@ x-spark-common: &spark-common
   networks:
     - yns_network
 services:
+  postgres_db:
+    container_name: postgres_db_transactions
+    image: postgres:latest
+    ports:
+      - "5432:5432"  
+    environment:
+      POSTGRES_USER: yns
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: Transactions_DB
+    volumes:
+      - ./postgres_DB:/var/lib/postgresql/data
+    networks:
+      - yns_network
+
   kafka-controller-1:
     image: apache/kafka:3.8.1
     container_name: kafka-controller-1
