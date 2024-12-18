@@ -2,3 +2,5 @@ myvenv/
 checkpoint/
 state/
 postgres_DB/
+jmx_exporter/
+state/
