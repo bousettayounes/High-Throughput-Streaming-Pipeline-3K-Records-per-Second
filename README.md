@@ -26,5 +26,5 @@ The PostgreSQL database provides a reliable and up-to-date data source for BI to
 This pipeline is ideal for scenarios requiring real-time data analysis, such as monitoring user activity, generating reports, or creating dynamic dashboards.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
-![Sys_architecture drawio (2)](https://github.com/user-attachments/assets/b0349f37-f7d6-4114-80be-bf96286508b9)
+![Sys_architecture drawio](https://github.com/user-attachments/assets/14c102e3-66d1-45e4-adc1-2935a515f2b2)
 ----------------------------------------------------------------------------------------------------------------------------------------------
