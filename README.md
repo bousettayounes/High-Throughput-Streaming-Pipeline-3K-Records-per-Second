@@ -1,8 +1,7 @@
 # High-Throughput Streaming Pipeline: 3K Data Per-Sec
 
-This project implements a real-time data pipeline designed for seamless data ingestion, processing, and delivery. 
-The architecture leverages Apache Kafka for event streaming and Apache Spark for real-time data aggregation and processing. 
-The pipeline integrates with a PostgreSQL database to store the processed data, enabling Business Intelligence (BI) teams to create dynamic, real-time visualizations.
+This project demonstrates a real-time streaming data pipeline designed to handle and process transactional data efficiently.
+The pipeline incorporates modern tools and technologies like Kafka, Schema Registry, Spark, and PostgreSQL to process, aggregate, and store data for real-time updates and analysis.
 
 # In this project, I have used the following technologies:
 - Apache Kafka: For streaming and messaging.
@@ -10,21 +9,24 @@ The pipeline integrates with a PostgreSQL database to store the processed data, 
 - Apache Spark: For real-time data processing and aggregation.
 - PostgreSQL: For persistent storage and integration with BI tools.
 
+# Pipeline Overview
+- Event Streaming with Kafka
+- Transactional data is streamed into Kafka topics.
+- Schema validation is managed using the Confluent Schema Registry to ensure consistency.
+- Data Processing with Spark
+ 
 # Key Features
-Event Streaming:
-Apache Kafka is used as the backbone for streaming events, with schema validation ensured by the Confluent Schema Registry.
-
-- Real-Time Data Processing:
-Apache Spark processes streaming data, aggregates it, and outputs the results to:
-
-- Kafka Topics: For further consumption by downstream systems.
-PostgreSQL: Processed data is stored for BI and reporting purposes.
-Real-Time BI Integration:
-The PostgreSQL database provides a reliable and up-to-date data source for BI tools, ensuring real-time visual updates.
+- Scalable Event Streaming: Kafka topics efficiently handle large volumes of incoming transactional events.
+- Schema Validation: Confluent Schema Registry ensures data consistency and compliance across the pipeline.
+- Real-Time Processing: Spark provides real-time data aggregation and processing capabilities.
+- Actionable Insights: Aggregated data is published back to Kafka for downstream consumers.
+- Live Data Visualization: PostgreSQL serves as a data source for BI tools, enabling real-time dashboards and reporting.
 
 # Use Case
-This pipeline is ideal for scenarios requiring real-time data analysis, such as monitoring user activity, generating reports, or creating dynamic dashboards.
-
+This pipeline simulates the processing of financial transaction data, enabling:
+- Real-time analytics of transaction trends and patterns.
+- Real-time updates for BI dashboards.
+- Support for business decision-making through actionable insights.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 ![Sys_architecture drawio](https://github.com/user-attachments/assets/14c102e3-66d1-45e4-adc1-2935a515f2b2)
 ----------------------------------------------------------------------------------------------------------------------------------------------
