@@ -16,7 +16,7 @@ CHECKPOINT_LOCATION = f"/opt/bitnami/spark/checkpoint/{CURRENT_TIME}"
 STATE_LOCATION = "/opt/bitnami/spark/state"
 SUBJECT_NAME = "Financial_TRANSACTIONS_schema"
 DB_URL = "jdbc:postgresql://postgres_db_transactions:5432/Transactions_DB"
-DB_PROPERTIES = {'user': 'yns', 'password': 'password', 'driver': 'org.postgresql.Driver'}
+DB_PROPERTIES = {'user': 'user', 'password': 'password', 'driver': 'org.postgresql.Driver'}
 TABLE_NAME = "Transactions"
 
 def get_schema_from_registry():
