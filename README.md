@@ -8,7 +8,9 @@ The pipeline incorporates modern tools and technologies like Kafka, Schema Regis
 - Confluent Schema Registry: To manage Avro schemas for Kafka topics.
 - Apache Spark: For real-time data processing and aggregation.
 - PostgreSQL: For persistent storage and integration with BI tools.
-
+----------------------------------------------------------------------------------------------------------------------------------------------
+![Sys_architecture drawio](https://github.com/user-attachments/assets/14c102e3-66d1-45e4-adc1-2935a515f2b2)
+----------------------------------------------------------------------------------------------------------------------------------------------
 # Pipeline Overview
 - Event Streaming with Kafka
 - Transactional data is streamed into Kafka topics.
@@ -27,6 +29,4 @@ This pipeline simulates the processing of financial transaction data, enabling:
 - Real-time analytics of transaction trends and patterns.
 - Real-time updates for BI dashboards.
 - Support for business decision-making through actionable insights.
-----------------------------------------------------------------------------------------------------------------------------------------------
-![Sys_architecture drawio](https://github.com/user-attachments/assets/14c102e3-66d1-45e4-adc1-2935a515f2b2)
-----------------------------------------------------------------------------------------------------------------------------------------------
+
