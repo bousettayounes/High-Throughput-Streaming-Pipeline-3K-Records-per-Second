@@ -8,7 +8,7 @@ import threading
 
 CURRENT_TIME = datetime.now().strftime("%Y%m%d_%H%M%S")
 KAFKA_BROKERS = "kafka-broker-1:19091,kafka-broker-2:19092,kafka-broker-3:19093"
-SCHEMA_REGISTRY_URL = "http://schema-registry:8081"
+SCHEMA_REGISTRY_URL = "http://schema-registry:9081"
 TOPIC_NAME = "Financial_TRANSACTIONS"
 AGGREGATES_TOPIC = "AGGREGATED_TOPIC"
 ANNOMALIES_TOPIC = "ANNOMALIES_TOPIC"

@@ -13,7 +13,7 @@ avro_schema = {
     {"name": "userId", "type": ["string", "null"]},
     {"name": "merchantId", "type": ["string", "null"]},
     {"name": "amount", "type": ["double", "null"]},
-    {"name": "transactionTime", "type": ["long", "null"]},
+    {"name": "transactionTime", "type": ["string", "null"]},
     {"name": "transactionType", "type": ["string", "null"]},
     {"name": "location", "type": ["string", "null"]},
     {"name": "paymentMethod", "type": ["string", "null"]},

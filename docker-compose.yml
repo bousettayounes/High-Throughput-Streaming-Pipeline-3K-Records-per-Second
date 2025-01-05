@@ -158,12 +158,12 @@ services:
     image: confluentinc/cp-schema-registry:7.5.1
     container_name: schema-registry
     ports:
-      - "8081:8081"
+      - "9081:9081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka-broker-1:19092,kafka-broker-2:19092,kafka-broker-3:19092"
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
-      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:9081
     volumes:
       - ./schema:/usr/share/schema
     depends_on:
@@ -175,11 +175,12 @@ services:
 
   console:
     image: docker.redpanda.com/redpandadata/console:v2.5.2
+    container_name: console_container
     entrypoint: /bin/sh
     command: >
       -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
     ports:
-      - 8080:8080
+      - 9090:9090
     depends_on:
       - kafka-broker-1
       - kafka-broker-2
@@ -192,7 +193,7 @@ services:
           brokers: ["kafka-broker-1:19092", "kafka-broker-2:19092", "kafka-broker-3:19092"]
           schemaRegistry:
             enabled: true
-            urls: ["http://schema-registry:8081"]
+            urls: ["http://schema-registry:9081"]
 
         redpanda:
           adminApi:
@@ -211,7 +212,7 @@ services:
     <<: *spark-common
     command: bin/spark-class org.apache.spark.deploy.master.Master
     ports:
-      - "9090:8080"
+      - "9190:9190"
       - "7077:7077"  
       - "4040:4040"
 
