@@ -4,7 +4,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient, Schema
 schema_registry_conf = {'url': 'http://localhost:8081'}
 
 schema_registry_client = SchemaRegistryClient(schema_registry_conf)
-
+#Schema Creations
 avro_schema = {
   "type": "record",
   "name": "Transactions_schema",
