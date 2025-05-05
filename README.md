@@ -79,7 +79,7 @@ The data pipeline is structured into three major components:
   - Enrichment with reference data
   - Pattern detection
 
-### Data Storage & Visualization (PostgreSQL)
+### Data Storage (PostgreSQL) & Visualization (PowerBi)
 - Final processed data is stored for analysis:
   - Transaction aggregates
   - Time-series metrics
