@@ -26,7 +26,7 @@ def get_schema_from_registry():
         schema_str = latest_schema.schema.schema_str
         return parse_avro_schema_to_spark_schema(json.loads(schema_str))
     except Exception as e:
-        print(f"ERROR RETRIEVING SCHEMA : {e}")
+        print(f"ERROR WHILE RETRIEVING SCHEMA : {e}")
         raise
 
 def parse_avro_schema_to_spark_schema(avro_schema):
@@ -56,6 +56,7 @@ spark = (SparkSession.builder
          .getOrCreate())
 
 spark.sparkContext.setLogLevel("WARN")
+
 transaction_schema = get_schema_from_registry()
 
 kafka_stream = (spark.readStream
