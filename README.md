@@ -20,7 +20,7 @@ This modern streaming architecture accelerates time-to-action while providing re
 
 ## 📌 High-Level Architecture
 
-![System Architecture](https://github.com/user-attachments/assets/14c102e3-66d1-45e4-adc1-2935a515f2b2)
+![System Architecture](Architecture/architecture.png)
 
 - **Source Systems**:  
   - Transactional data streams
